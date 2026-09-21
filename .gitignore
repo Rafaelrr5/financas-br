@@ -1,0 +1,8 @@
+__pycache__/
+.pytest_cache/
+
+# Segredos e dados pessoais — nada disso pode ser versionado.
+.env
+fin.db
+*.db
+*.pdf
