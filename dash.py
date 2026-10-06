@@ -26,7 +26,7 @@ ICONE = ("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 
          "<rect y='7' width='16' height='3' fill='%23E8EFE6'/>"
          "<rect y='11' width='16' height='3' fill='%231C1F1B'/></svg>")
 
-PAGE = """<!doctype html><meta charset=utf-8><title>Finanças</title>
+PAGE = """<!doctype html><meta charset=utf-8><title>Extrato Claro</title>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <link rel=icon href="{icone}">
 <style>

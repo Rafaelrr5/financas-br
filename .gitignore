@@ -6,3 +6,8 @@ __pycache__/
 fin.db
 *.db
 *.pdf
+
+# Build do Extrato Claro (build_windows.py)
+dist/
+build/
+*.spec

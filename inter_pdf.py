@@ -34,6 +34,9 @@ def texto(path):
     try:
         import pypdf  # dep só aqui: quem importa CSV não precisa dela
     except ImportError:  # ponytail: instala na hora; zero setup pós-clone
+        if getattr(sys, "frozen", False):  # .exe: sem pip, e o pypdf vai dentro do pacote
+            raise RuntimeError("o leitor de PDF não veio nesta cópia do Extrato Claro. "
+                               "Baixe o .zip de novo e extraia a pasta inteira.") from None
         import subprocess
         subprocess.run([sys.executable, "-m", "pip", "install", "-q", "pypdf"], check=True)
         import pypdf

@@ -1,4 +1,8 @@
-# finanças-br — tracking financeiro pessoal (Inter + Mercado Pago + B3)
+# Extrato Claro — tracking financeiro pessoal (Inter + Mercado Pago + B3)
+
+Nome do aplicativo: **Extrato Claro**. O repositório continua `financas-br`.
+Download Windows x64: https://github.com/Rafaelrr5/financas-br/releases/download/v0.1.0-windows-preview/ExtratoClaro-Windows-x64.zip
+Versão prévia, sem assinatura digital. Extraia o ZIP inteiro e abra `ExtratoClaro.exe`; Python e o leitor de PDF já vêm incluídos.
 
 Importa extrato de banco e de corretora brasileiros para um SQLite local,
 categoriza os lançamentos e mostra tudo num dashboard web que roda na sua
@@ -147,6 +151,36 @@ histórico. O cronograma é *deduzido* — o extrato lança toda parcela com a d
 da compra original e não diz em qual fatura cada uma cai, então a seção assume
 uma parcela por mês a partir da primeira fatura depois da compra (fechamento dia
 15, `store.FECHAMENTO`). Valor marcado com `*` é estimado.
+
+### 6. Extrato Claro — versão Windows sem Python
+
+Para quem não programa: `ExtratoClaro-Windows-x64.zip` traz o mesmo dashboard
+num `.exe`. Extraia o zip, abra a pasta `ExtratoClaro` e dê dois cliques em
+`ExtratoClaro.exe` — o passo a passo está no `LEIA-ME.txt` dentro do zip.
+
+- Abre o navegador sozinho, depois que o painel responde de verdade. Uma
+  janelinha fica aberta com **Abrir painel** e **Fechar o aplicativo**: fechar a
+  aba do navegador não deixa nada rodando escondido.
+- Escuta só em `127.0.0.1`, numa porta livre escolhida pelo sistema (não toma a
+  8000 de outro programa). Recusa `Host` diferente de `127.0.0.1`/`localhost` e
+  `POST` vindo de outro site.
+- Dados em `%LOCALAPPDATA%\3R Studios\Extrato Claro\` (`fin.db` e
+  `extrato-claro.log`), nunca na pasta do `.exe`. `FIN_DB` só é respeitado com
+  `EXTRATO_CLARO_TESTE=1`, que também desliga a abertura do navegador.
+- O `pypdf` vai dentro do pacote; o `.exe` nunca instala nada.
+
+Rodar sem empacotar: `python launcher.py`. Gerar o zip (Windows, sai em
+`dist/`, ignorado pelo git):
+
+```bash
+python test_launcher.py                                   # testes do launcher
+python build_windows.py --scratch C:\pasta\temporaria     # build + smoke do .exe
+```
+
+O build cria um venv isolado em `--scratch` com versões fixadas, empacota só os
+módulos do dashboard + `LICENSE`, recusa o zip se achar `.env`/`.db`/`.pdf`, e o
+smoke roda o `.exe` extraído com banco sintético: HTTP, import de PDF, bloqueios
+e fechamento pela janela.
 
 ## Segurança
 
